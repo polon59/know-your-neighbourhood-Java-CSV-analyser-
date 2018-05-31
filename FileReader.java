@@ -12,14 +12,19 @@ public class FileReader {
         try{
             Scanner scanner = new Scanner(data);
             while (scanner.hasNextLine()){
-                text.append(scanner.nextLine());
-                text.append("\n");    
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-            }
+                String line = scanner.nextLine();
+                String[] lineElements = line.split("\t");
 
-        this.fileText = text.toString();    
-        System.out.println(this.fileText);
+
+                for (String element : lineElements){
+                    System.out.println(element);
+                }
+                System.out.println("==================");
+            }
+        } 
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
+    
 }
