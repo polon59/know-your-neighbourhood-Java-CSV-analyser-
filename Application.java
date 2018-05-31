@@ -13,7 +13,9 @@ public class Application {
 
 
     public void launchApplication(){
-        
+        for (Location location : locations){
+            System.out.println(location.toString());
+        }
 
 
     }

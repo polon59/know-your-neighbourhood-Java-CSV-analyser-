@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationCreator {
-    List<Location> locations;
+    ArrayList<Location> locations;
     FileReader fileReader;
     ArrayList<String[]> fileLines;
 

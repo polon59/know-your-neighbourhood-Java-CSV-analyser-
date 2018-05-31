@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 
@@ -6,7 +7,7 @@ public class FileReader {
 
     public ArrayList<String[]> readLocationsFromFile(){
 
-        List<String[]> fileLines = new ArrayList<String[]>();
+        ArrayList<String[]> fileLines = new ArrayList<String[]>();
         File data = new File("data.csv");
 
         try{
