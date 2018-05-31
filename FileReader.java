@@ -1,35 +1,27 @@
+import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 
 public class FileReader {
 
-    private LocationCreator locationCreator;
+    public ArrayList<String[]> readLocationsFromFile(){
 
-    public FileReader(){
-        this.locationCreator = new LocationCreator();
-    }
-
-    public void readDataFile(){
+        List<String[]> fileLines = new ArrayList<String[]>();
         File data = new File("data.csv");
-        StringBuilder text = new StringBuilder();
 
         try{
             Scanner scanner = new Scanner(data);
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 String[] locationInfo = line.split("\t");
-                locationCreator.evaluateLocationType(locationInfo);
-                //System.out.println("dupa");
-
-                // for (String element : lineElements){
-                //     System.out.println(element);
-                // }
-                // System.out.println("==================");
+                fileLines.add(locationInfo);
             }
+            scanner.close();
         } 
         catch (Exception e){
             e.printStackTrace();
         }
+        return fileLines;
     }
 
 }

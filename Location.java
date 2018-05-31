@@ -22,5 +22,10 @@ public class Location {
     public String getBelongingCountryID(){
         return this.belongingCountryID;
     }
+
+    @Override
+    public String toString(){
+        return this.name +" " + this.category + " " + this.belongingCountryID;
+    }
     
 }

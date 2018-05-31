@@ -3,47 +3,25 @@ import java.util.List;
 
 public class LocationCreator {
     List<Location> locations;
+    FileReader fileReader;
+    ArrayList<String[]> fileLines;
 
     public LocationCreator(){
         locations = new ArrayList<Location>();
+        fileReader = new FileReader();
+        fileLines = fileReader.readLocationsFromFile();
+        createLocations();
     }
 
-    public void createLocation(String[] locationInfo){
+    public void createLocations(){
 
-        String locationCategory = locationInfo[5];
-        String locationName = locationInfo[4];
-        String belongingCountryID = locationInfo[1];
-
-        Location newLocation = new Location(locationName, locationCategory, belongingCountryID);
-        locations.add(newLocation);
-
-            // if (locationName.equals("województwo")){
-            //     System.out.println("województwo");
-            // }
-            // else if (locationName.equals("powiat")){
-            //     System.out.println("powiat");
-            // }
-            // else if (locationName.equals("gmina miejska")){
-            //     System.out.println("gmina miejska");
-            // }
-            // else if (locationName.equals("gmina wiejska")){
-            //     System.out.println("gmina wiejska");
-            // }
-            // else if (locationName.equals("gmina miejsko-wiejska")){
-            //     System.out.println("gmina miejsko-wiejska");
-            // }
-            // else if (locationName.equals("obszar wiejski")){
-            //     System.out.println("obszar wiejski");
-            // }       
-            // else if (locationName.equals("miasto")){
-            //     System.out.println("miasto");
-            // }
-            // else if (locationName.equals("delegatura")){
-            //     System.out.println("delegatura");
-            //     }
-            // else if (locationName.equals("miasto na prawach powiatu")){
-            //     System.out.println("miasto na prawach powiatu");
-            // }
+        for (String[] locationInfo : fileLines){
+            String locationCategory = locationInfo[5];
+            String locationName = locationInfo[4];
+            String belongingCountryID = locationInfo[1];
+            Location newLocation = new Location(locationName, locationCategory, belongingCountryID);
+            locations.add(newLocation);
+        }
     }
 
     public ArrayList<Location> getLocationsList(){
