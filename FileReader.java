@@ -3,7 +3,11 @@ import java.io.File;
 
 public class FileReader {
 
-    private String fileText;
+    private LocationCreator locationCreator;
+
+    public FileReader(){
+        this.locationCreator = new LocationCreator();
+    }
 
     public void readDataFile(){
         File data = new File("data.csv");
@@ -13,18 +17,19 @@ public class FileReader {
             Scanner scanner = new Scanner(data);
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
-                String[] lineElements = line.split("\t");
+                String[] locationInfo = line.split("\t");
+                locationCreator.evaluateLocationType(locationInfo);
+                //System.out.println("dupa");
 
-
-                for (String element : lineElements){
-                    System.out.println(element);
-                }
-                System.out.println("==================");
+                // for (String element : lineElements){
+                //     System.out.println(element);
+                // }
+                // System.out.println("==================");
             }
         } 
         catch (Exception e){
             e.printStackTrace();
         }
     }
-    
+
 }
