@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class StatisticalAnalysis {
 
@@ -8,7 +9,7 @@ public class StatisticalAnalysis {
     }
 
     public void countLocationsByCategory(){
-        String locationName;
+        String locationCategoryName;
 
         int województwoCounter = 0;
         int powiatCounter = 0;
@@ -18,38 +19,42 @@ public class StatisticalAnalysis {
         int owCounter = 0;
         int miastoCounter = 0;
         int delegaturaCounter = 0;
-        int mppCounter = 0;
+        int mnppCounter = 0;
 
+
+        System.out.println(locations.size() + "--SIZE");
         for (Location location : locations){
-            locationName = location.getName();
+            locationCategoryName = location.getCategoryName();
 
-            if (locationName.equals("województwo")){
+            if (locationCategoryName.equals("województwo")){
                 województwoCounter++;
             }
-            else if (locationName.equals("powiat")){
+            else if (locationCategoryName.equals("powiat")||
+                     locationCategoryName.equals("miasto na prawach powiatu")){
                 powiatCounter++;
             }
-            else if (locationName.equals("gmina miejska")){
+            else if (locationCategoryName.equals("gmina miejska")){
                 gmCounter++;
             }
-            else if (locationName.equals("gmina wiejska")){
+            else if (locationCategoryName.equals("gmina wiejska")){
                 gwCounter++;
             }
-            else if (locationName.equals("gmina miejsko-wiejska")){
+            else if (locationCategoryName.equals("gmina miejsko-wiejska")){
                 gmwCounter++;
             }
-            else if (locationName.equals("obszar wiejski")){
+            else if (locationCategoryName.equals("obszar wiejski")){
                 owCounter++;
             }       
-            else if (locationName.equals("miasto")){
+            else if (locationCategoryName.equals("miasto")){
                 miastoCounter++;
             }
-            else if (locationName.equals("delegatura")){
+            else if (locationCategoryName.equals("delegatura")){
                 delegaturaCounter++;
-                }
-            else if (locationName.equals("miasto na prawach powiatu")){
-                mppCounter++;
             }
+            else if (locationCategoryName.equals("miasto na prawach powiatu")){
+                mnppCounter++;
+            }
+
         }
 
         System.out.println(województwoCounter + " " + powiatCounter + " " + gmCounter + " " + gwCounter);
