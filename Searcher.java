@@ -52,6 +52,15 @@ public class Searcher {
         return searchPattern;
     }
 
+
+    private String[] adjustNameColor(List<Integer> indexesWithGoodResult, String[] splittedName){
+        for (int index : indexesWithGoodResult){
+            splittedName[index] = ANSI_GREEN + splittedName[index] + ANSI_RESET;
+        }
+        return splittedName;
+    }
+
+
     public void handleAdvancedSearch(){
         String[] pattern = getSearchPatternFromInput();
         Set<String> locationNames = createLocationNamesSet();
@@ -89,9 +98,10 @@ public class Searcher {
                 }
                 if (matchingLetters == pattern.length){
                     //reconstruct from here
-                    for (int index : indexesWithGoodResult){
-                        splittedName[index] = ANSI_GREEN + splittedName[index] + ANSI_RESET;
-                    }
+                    splittedName = adjustNameColor(indexesWithGoodResult, splittedName);
+                    // for (int index : indexesWithGoodResult){
+                    //     splittedName[index] = ANSI_GREEN + splittedName[index] + ANSI_RESET;
+                    // }
                     //to here
                     searchResults.add(String.join("", splittedName));
                 }
