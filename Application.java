@@ -20,6 +20,7 @@ public class Application {
         // }
             statisticalAnalysis.countLocationsByCategory();
             statisticalAnalysis.findLongestLocationsNames();
+            statisticalAnalysis.findBiggestCountyName();
 
     }
     

@@ -1,16 +1,19 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class StatisticalAnalysis {
 
     private ArrayList<Location> locations;
     private  HashMap<String, Integer> locationsCounters;
+    private  HashMap<String, Integer> communityCountyCounter;
     private LocationsIterator locationsIterator;
 
     public StatisticalAnalysis(ArrayList<Location> locations){
         this.locations = locations;
         this.locationsCounters = new HashMap<String, Integer>();
+        this.communityCountyCounter = new HashMap<String, Integer>();
         this.locationsIterator = new LocationsIterator(locations);
     }
 
@@ -86,6 +89,48 @@ public class StatisticalAnalysis {
             longestLocationsNames.add(locationsIterator.next().getName());
         }
         return longestLocationsNames;
+    }
+
+
+    private void incrementCommunitiesCounter(String countyID){
+        communityCountyCounter.put(countyID, locationsCounters.getOrDefault(countyID, 0) + 1);
+    }
+
+
+    private String getBiggestCountyID(){
+        Set<String> possibleIDs = communityCountyCounter.keySet();
+        Integer biggestCountyIDoccurency = 0;
+        String biggestCountyID = "";
+
+        for (String currentId : possibleIDs){
+            if (communityCountyCounter.get(currentId) > biggestCountyIDoccurency){
+                biggestCountyID = currentId;
+            }
+        }
+        return biggestCountyID;
+    }
+
+
+    public void findBiggestCountyName(){
+        String currentCountyID;
+
+
+        while (locationsIterator.hasNext()){
+            currentCountyID = locationsIterator.next().getBelongingCountyID();
+            incrementCommunitiesCounter(currentCountyID);
+        }
+
+        String biggestCountyID = getBiggestCountyID();
+        String biggestCountyName;
+
+        while (locationsIterator.hasNext()){
+            Location currentLocation = locationsIterator.next();
+            if(currentLocation.getBelongingCountyID().equals(biggestCountyID) && currentLocation.getCategoryName().equals("powiat")){
+                System.out.println(currentLocation.getName());
+            }
+        }
+
+
     }
 
 }
