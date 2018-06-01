@@ -24,7 +24,7 @@ public class Application {
             statisticalAnalysis.findLongestLocationsNames();
             statisticalAnalysis.findBiggestCountyName();
             statisticalAnalysis.getLocationsWithMultipleCategories();
-            searcher.handleAdvancedSearch();
+            searchManager.handleAdvancedSearch();
 
     }
     
