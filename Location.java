@@ -3,12 +3,12 @@ public class Location {
 
     String name;
     String category;
-    String belongingCountryID;
+    String belongingCountyID;
 
-    public Location(String name, String category, String belongingCountryID){
+    public Location(String name, String category, String belongingCountyID){
         this.name = name;
         this.category = category;
-        this.belongingCountryID = belongingCountryID;
+        this.belongingCountyID = belongingCountyID;
     }
 
     public String getName(){
@@ -19,13 +19,13 @@ public class Location {
         return this.category;
     }
 
-    public String getBelongingCountryID(){
-        return this.belongingCountryID;
+    public String getBelongingCountyID(){
+        return this.belongingCountyID;
     }
 
     @Override
     public String toString(){
-        return this.name +" " + this.category + " " + this.belongingCountryID;
+        return this.name +" " + this.category + " " + this.belongingCountyID;
     }
     
 }
