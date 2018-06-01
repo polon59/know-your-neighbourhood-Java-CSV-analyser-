@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class StatisticalAnalysis {
 
@@ -60,12 +61,52 @@ public class StatisticalAnalysis {
         locationsCounters.put(location, locationsCounters.getOrDefault(location, 0) + 1);
     }
 
-    public void findLongestLocationsNames(){
-        String[] longestLocationsNames = new String[3];
 
-        //locationsIterator.resetIteratorIndex();
+    private ArrayList<String> setInitialLongestLocationNames(){
+        ArrayList<String> longestLocationsNames = new ArrayList<String>();
+        
+        for (int i = 0 ; i < 3; i++){
+            longestLocationsNames.add(locationsIterator.next().getName());
+        }
+        return longestLocationsNames;
+    }
+
+
+    // this method is used to find shortest of three longest location names
+    private int findShortestLocationNameIndex(ArrayList<String> longestNames){
+        int shortestNameIndex = 0;
+        int currentNameLength, shortestNameLength;
+        
+        for (int currentIndex = 0; currentIndex < longestNames.size(); currentIndex++){
+            currentNameLength = longestNames.get(currentIndex).length();
+            shortestNameLength = longestNames.get(shortestNameIndex).length();
+
+            if (currentNameLength < shortestNameLength){
+                shortestNameIndex = currentIndex;
+            }
+        }
+        return shortestNameIndex;
+    }
+
+
+    public void findLongestLocationsNames(){
+        String shortestOfLongestName, currentName;
+        int shortestOfLongestNamesIndex;
+        ArrayList<String> longestLocationsNames = setInitialLongestLocationNames();
+        
         while (locationsIterator.hasNext()){
-            break;
+
+            shortestOfLongestNamesIndex = findShortestLocationNameIndex(longestLocationsNames);
+            shortestOfLongestName = longestLocationsNames.get(shortestOfLongestNamesIndex);
+            currentName = locationsIterator.next().getName();
+
+            if (currentName.length() > shortestOfLongestName.length()){
+                longestLocationsNames.set(shortestOfLongestNamesIndex, currentName);
+            }
+        }
+
+        for (String name : longestLocationsNames){
+            System.out.println(name);
         }
 
         

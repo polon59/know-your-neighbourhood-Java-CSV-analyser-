@@ -18,10 +18,9 @@ public class LocationsIterator implements Iterator {
             return true;
         }
         else{
-            this.index = 0;
+            resetIteratorIndex();
             return false;
         }
-        //return this.index < this.locationsList.size();
     }
 
     @Override
@@ -32,8 +31,7 @@ public class LocationsIterator implements Iterator {
         }else return null;
     }
 
-    @Override
-    public void remove(){
+    public void resetIteratorIndex(){
         //this method resets index to 0, which allows to use the same iterator once again
         this.index = 0;
     }
