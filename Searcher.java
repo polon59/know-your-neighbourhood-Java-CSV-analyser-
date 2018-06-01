@@ -74,7 +74,7 @@ public class Searcher {
 
                 while (a < splittedName.length){
                     
-                    if(splittedName[a].equals(pattern[i])){
+                    if(splittedName[a].toLowerCase().equals(pattern[i].toLowerCase())){
                         indexesWithGoodResult.add(a);
                         //splittedName[a] = ANSI_GREEN + splittedName[a] + ANSI_RESET;
                         matchingLetters++;
@@ -90,7 +90,7 @@ public class Searcher {
                 }
                 if (matchingLetters == pattern.length){
                     splittedName = adjustNameColor(indexesWithGoodResult, splittedName);
-                    searchResults.add(String.join("", splittedName) + " " + currentLocation.getCategoryName());
+                    searchResults.add(String.join("", splittedName) + "---" + currentLocation.getCategoryName());
                 }
                 break;
             }
