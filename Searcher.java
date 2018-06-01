@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.HashSet;
 
 public class Searcher {
 
@@ -34,13 +35,13 @@ public class Searcher {
         return locationsWithManyCategories;
     }
 
-    private List<String> createLocationNamesList(){
-        List<String> listOfLocationNames = new ArrayList<String>();
+    private Set<String> createLocationNamesSet(){
+        Set<String> setOfLocationNames = new HashSet<String>();
 
         while(locationsIterator.hasNext()){
-            listOfLocationNames.add(locationsIterator.next().getName());
+            setOfLocationNames.add(locationsIterator.next().getName());
         }
-        return listOfLocationNames;
+        return setOfLocationNames;
     }
 
 
@@ -53,10 +54,9 @@ public class Searcher {
 
     public void handleAdvancedSearch(){
         String[] pattern = getSearchPatternFromInput();
-        final String ANSI_GREEN = "\u001B[32m";
-        final String ANSI_RESET = "\u001B[0m";
-        List<String> locationNames = createLocationNamesList();
+        Set<String> locationNames = createLocationNamesSet();
         List<String> searchResults = new ArrayList<String>();
+        List<Integer> indexesWithGoodResult = new ArrayList<Integer>();
         int matchingLetters = 0;
         int i = 0;
         int a = 0;
@@ -67,26 +67,32 @@ public class Searcher {
             a = 0;
             i = 0;
             matchingLetters = 0;
+            indexesWithGoodResult.clear();
+
             while (i <= pattern.length){
 
                 while (a < splittedName.length){
                     
                     if(splittedName[a].equals(pattern[i])){
-                        splittedName[a] = ANSI_GREEN + splittedName[a] + ANSI_RESET;
+                        indexesWithGoodResult.add(a);
+                        //splittedName[a] = ANSI_GREEN + splittedName[a] + ANSI_RESET;
                         matchingLetters++;
                         i++;
                     }
                     else{
                         i = 0;
                         matchingLetters = 0;
-                        splittedName = resetWordColor(splittedName);
-                        //resetColor
+                        indexesWithGoodResult.clear();
                     }
                     a++;
                     if (i == pattern.length ){break;}
                 }
-
                 if (matchingLetters == pattern.length){
+                    //reconstruct from here
+                    for (int index : indexesWithGoodResult){
+                        splittedName[index] = ANSI_GREEN + splittedName[index] + ANSI_RESET;
+                    }
+                    //to here
                     searchResults.add(String.join("", splittedName));
                 }
                 break;
@@ -99,10 +105,15 @@ public class Searcher {
     }
 
     private String[] resetWordColor(String[] word){
-        for (String letter : word){
-            letter = ANSI_WHITE + letter + ANSI_RESET;
+        String[] uncoloredWord = new String[word.length];
+
+        for (int index = 0; index < word.length; index++){
+            uncoloredWord[index] = ANSI_WHITE + word[index] + ANSI_RESET;
+
         }
-        return word;
+
+        return uncoloredWord;
+        
     }
     
 }
