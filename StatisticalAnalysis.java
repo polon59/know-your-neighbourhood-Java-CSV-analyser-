@@ -12,80 +12,26 @@ public class StatisticalAnalysis {
         this.locations = locations;
         this.locationsCounters = new HashMap<String, Integer>();
         this.locationsIterator = new LocationsIterator(locations);
-
     }
 
 
     public void countLocationsByCategory(){
         String locationCategoryName;
-        //for (Location location : locations)
+        String[] possibleLocationNames = {"województwo","powiat","gmina miejska","gmina wiejska",
+        "gmina miejsko-wiejska","obszar wiejski","miasto","delegatura","miasto na prawach powiatu"};
 
         while (locationsIterator.hasNext()){
             locationCategoryName = locationsIterator.next().getCategoryName();
-            //locationCategoryName = location.getCategoryName();
 
-            if (locationCategoryName.equals("województwo")){
-                incrementLocationCounter("województwo");            
+            for (String possibleLocation : possibleLocationNames){
+
+                if (locationCategoryName.equals(possibleLocation))
+                    incrementLocationCounter(locationCategoryName);
             }
-            else if (locationCategoryName.equals("powiat")){
-                incrementLocationCounter("powiat");
-            }
-            else if (locationCategoryName.equals("gmina miejska")){
-                incrementLocationCounter("gmina miejska");
-            }
-            else if (locationCategoryName.equals("gmina wiejska")){
-                incrementLocationCounter("gmina wiejska");
-            }
-            else if (locationCategoryName.equals("gmina miejsko-wiejska")){
-                incrementLocationCounter("gmina miejsko-wiejska");
-            }
-            else if (locationCategoryName.equals("obszar wiejski")){
-                incrementLocationCounter("obszar wiejski");
-            }       
-            else if (locationCategoryName.equals("miasto")){
-                incrementLocationCounter("miasto");
-            }
-            else if (locationCategoryName.equals("delegatura")){
-                incrementLocationCounter("delegatura");
-            }
-            else if (locationCategoryName.equals("miasto na prawach powiatu")){
-                incrementLocationCounter("miasto na prawach powiatu");
-                incrementLocationCounter("powiat");
-            }  
+
         }
         //view.printhashmap() - here must be something like this
         System.out.println(locationsCounters.toString()); 
-    }
-
-    private void incrementLocationCounter(String location){
-        locationsCounters.put(location, locationsCounters.getOrDefault(location, 0) + 1);
-    }
-
-
-    private ArrayList<String> setInitialLongestLocationNames(){
-        ArrayList<String> longestLocationsNames = new ArrayList<String>();
-        
-        for (int i = 0 ; i < 3; i++){
-            longestLocationsNames.add(locationsIterator.next().getName());
-        }
-        return longestLocationsNames;
-    }
-
-
-    // this method is used to find shortest of three longest location names
-    private int findShortestLocationNameIndex(ArrayList<String> longestNames){
-        int shortestNameIndex = 0;
-        int currentNameLength, shortestNameLength;
-        
-        for (int currentIndex = 0; currentIndex < longestNames.size(); currentIndex++){
-            currentNameLength = longestNames.get(currentIndex).length();
-            shortestNameLength = longestNames.get(shortestNameIndex).length();
-
-            if (currentNameLength < shortestNameLength){
-                shortestNameIndex = currentIndex;
-            }
-        }
-        return shortestNameIndex;
     }
 
 
@@ -105,10 +51,41 @@ public class StatisticalAnalysis {
             }
         }
 
+        //view.printLongestLocationNames() here must be something like this
         for (String name : longestLocationsNames){
             System.out.println(name);
         }
-
-        
     }
+
+    // this method is used to find shortest of three longest location names
+    private int findShortestLocationNameIndex(ArrayList<String> longestNames){
+        int shortestNameIndex = 0;
+        int currentNameLength, shortestNameLength;
+        
+        for (int currentIndex = 0; currentIndex < longestNames.size(); currentIndex++){
+            currentNameLength = longestNames.get(currentIndex).length();
+            shortestNameLength = longestNames.get(shortestNameIndex).length();
+
+            if (currentNameLength < shortestNameLength){
+                shortestNameIndex = currentIndex;
+            }
+        }
+        return shortestNameIndex;
+    }
+
+
+    private void incrementLocationCounter(String location){
+        locationsCounters.put(location, locationsCounters.getOrDefault(location, 0) + 1);
+    }
+
+
+    private ArrayList<String> setInitialLongestLocationNames(){
+        ArrayList<String> longestLocationsNames = new ArrayList<String>();
+        
+        for (int i = 0 ; i < 3; i++){
+            longestLocationsNames.add(locationsIterator.next().getName());
+        }
+        return longestLocationsNames;
+    }
+
 }
