@@ -5,18 +5,23 @@ public class StatisticalAnalysis {
 
     private ArrayList<Location> locations;
     private  HashMap<String, Integer> locationsCounters;
+    private LocationsIterator locationsIterator;
 
     public StatisticalAnalysis(ArrayList<Location> locations){
         this.locations = locations;
-        this.locationsCounters= new HashMap<String, Integer>();
+        this.locationsCounters = new HashMap<String, Integer>();
+        this.locationsIterator = new LocationsIterator(locations);
+
     }
 
 
     public void countLocationsByCategory(){
         String locationCategoryName;
+        //for (Location location : locations)
 
-        for (Location location : locations){
-            locationCategoryName = location.getCategoryName();
+        while (locationsIterator.hasNext()){
+            locationCategoryName = locationsIterator.next().getCategoryName();
+            //locationCategoryName = location.getCategoryName();
 
             if (locationCategoryName.equals("województwo")){
                 incrementLocationCounter("województwo");            
@@ -57,10 +62,12 @@ public class StatisticalAnalysis {
 
     public void findLongestLocationsNames(){
         String[] longestLocationsNames = new String[3];
-            
 
-        for (Location location : locations){
-            
+        //locationsIterator.resetIteratorIndex();
+        while (locationsIterator.hasNext()){
+            break;
         }
+
+        
     }
 }

@@ -19,6 +19,7 @@ public class Application {
         //     System.out.println(location.toString());
         // }
             statisticalAnalysis.countLocationsByCategory();
+            statisticalAnalysis.findLongestLocationsNames();
 
     }
     

@@ -14,14 +14,28 @@ public class LocationsIterator implements Iterator {
 
     @Override
     public boolean hasNext(){
-        return this.index < this.locationsList.size();
+        if (this.index < this.locationsList.size()){
+            return true;
+        }
+        else{
+            this.index = 0;
+            return false;
+        }
+        //return this.index < this.locationsList.size();
     }
 
     @Override
     public Location next(){
         if(hasNext()){
-            return locationsList.get(this.index);
+            index ++;
+            return locationsList.get(this.index-1);
         }else return null;
+    }
+
+    @Override
+    public void remove(){
+        //this method resets index to 0, which allows to use the same iterator once again
+        this.index = 0;
     }
     
 }
