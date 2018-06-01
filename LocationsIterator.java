@@ -35,5 +35,7 @@ public class LocationsIterator implements Iterator {
         //this method resets index to 0, which allows to use the same iterator once again
         this.index = 0;
     }
+
+    
     
 }

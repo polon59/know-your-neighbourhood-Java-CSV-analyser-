@@ -6,32 +6,32 @@ import java.util.Set;
 public class StatisticalAnalysis {
 
     private ArrayList<Location> locations;
-    private  HashMap<String, Integer> locationsCounters;
-    private  HashMap<String, Integer> communityCountyCounter;
+    private HashMap<String, Integer> locationsCounters;
+    private HashMap<String, Integer> communityCountyCounter;
+    private HashMap<String, Integer> lotationsCategoriesCounter;
     private LocationsIterator locationsIterator;
+    private Searcher searchManager;
 
 
     public StatisticalAnalysis(ArrayList<Location> locations){
         this.locations = locations;
         this.locationsCounters = new HashMap<String, Integer>();
         this.communityCountyCounter = new HashMap<String, Integer>();
+        this.lotationsCategoriesCounter = new HashMap<String, Integer>();
         this.locationsIterator = new LocationsIterator(locations);
+        this.searchManager = new Searcher(locations);
     }
 
 
     public void countLocationsByCategory(){
         String locationCategoryName;
-        String[] possibleLocationNames = {"województwo","powiat","gmina miejska","gmina wiejska",
-        "gmina miejsko-wiejska","obszar wiejski","miasto","delegatura","miasto na prawach powiatu"};
 
+        locationsIterator.resetIteratorIndex();
         while (locationsIterator.hasNext()){
             locationCategoryName = locationsIterator.next().getCategoryName();
-
-            for (String possibleLocation : possibleLocationNames){
-
-                if (locationCategoryName.equals(possibleLocation))
-                    incrementLocationCounter(locationCategoryName);
-            }
+      
+            locationsCounters.put
+            (locationCategoryName, locationsCounters.getOrDefault(locationCategoryName, 0) + 1);
         }
         //view.printhashmap() - here must be something like this
         System.out.println(locationsCounters.toString()); 
@@ -52,7 +52,7 @@ public class StatisticalAnalysis {
                 longestLocationsNames.set(shortestOfLongestNamesIndex, currentName);
             }
         }
-        //view.printLongestLocationNames() here must be something like this
+        //view.printLongestLocationNames() print arraylist
         for (String name : longestLocationsNames){
             System.out.println(name);
         }
@@ -73,11 +73,6 @@ public class StatisticalAnalysis {
             }
         }
         return shortestNameIndex;
-    }
-
-
-    private void incrementLocationCounter(String location){
-        locationsCounters.put(location, locationsCounters.getOrDefault(location, 0) + 1);
     }
 
 
@@ -137,7 +132,35 @@ public class StatisticalAnalysis {
         String biggestCountyName = findCountyNameByID(biggestCountyID);
 
         System.out.println(biggestCountyName);
+        // view.print normal string
+    }
 
+
+    private void countCategoriesForEachLocation(){
+        Location currentLocation;
+        String currentLocationName;
+
+        while (locationsIterator.hasNext()){
+            currentLocation = locationsIterator.next();
+            currentLocationName = currentLocation.getName();
+
+            lotationsCategoriesCounter.put
+            (currentLocationName, lotationsCategoriesCounter.getOrDefault(currentLocationName, 0) + 1);
+        }
+    }
+
+
+    public void getLocationsWithMultipleCategories(){
+        countCategoriesForEachLocation();
+
+        List<String> locationsWithMultipleCategories = searchManager.
+            findLocationsWithManyCategories(lotationsCategoriesCounter);
+
+        //view.print arraylist
+        for (String name : locationsWithMultipleCategories){
+            System.out.println(name); 
+        }
+        
     }
 
 }
