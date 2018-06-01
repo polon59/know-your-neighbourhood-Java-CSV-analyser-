@@ -11,17 +11,6 @@ public class StatisticalAnalysis {
         this.locationsCounters= new HashMap<String, Integer>();
     }
 
-    private HashMap<String,Integer> createLocationsCountersMap(){
-        String[] locationsNames = {"województwo","powiat","gmina miejska","gmina wiejska", 
-        "gmina miejsko-wiejska","obszar wiejski","miasto","delegatura","miasto na prawach powiatu"};
-        
-        for (String location : locationsNames){
-            locationsCounters.put(location, 0);
-        }
-        return locationsCounters;
-    
-    }
-
     private void incrementLocationCounter(String location){
         locationsCounters.put(location, locationsCounters.getOrDefault(location, 1) + 1);
     }
