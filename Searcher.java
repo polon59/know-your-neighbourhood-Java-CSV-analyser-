@@ -97,33 +97,16 @@ public class Searcher {
                     if (i == pattern.length ){break;}
                 }
                 if (matchingLetters == pattern.length){
-                    //reconstruct from here
                     splittedName = adjustNameColor(indexesWithGoodResult, splittedName);
-                    // for (int index : indexesWithGoodResult){
-                    //     splittedName[index] = ANSI_GREEN + splittedName[index] + ANSI_RESET;
-                    // }
-                    //to here
                     searchResults.add(String.join("", splittedName));
                 }
                 break;
             }
         }
 
+        //view.print ARRaylist
         for (String result : searchResults){
             System.out.println(result);
         }
-    }
-
-    private String[] resetWordColor(String[] word){
-        String[] uncoloredWord = new String[word.length];
-
-        for (int index = 0; index < word.length; index++){
-            uncoloredWord[index] = ANSI_WHITE + word[index] + ANSI_RESET;
-
-        }
-
-        return uncoloredWord;
-        
-    }
-    
+    }    
 }
