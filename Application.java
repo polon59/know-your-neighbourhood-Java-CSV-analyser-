@@ -20,10 +20,10 @@ public class Application {
         // for (Location location : locations){
         //     System.out.println(location.toString());
         // }
-            statisticalAnalysis.countLocationsByCategory();
-            statisticalAnalysis.findLongestLocationsNames();
-            statisticalAnalysis.findBiggestCountyName();
-            statisticalAnalysis.getLocationsWithMultipleCategories();
+            // statisticalAnalysis.countLocationsByCategory();
+            // statisticalAnalysis.findLongestLocationsNames();
+            // statisticalAnalysis.findBiggestCountyName();
+            // statisticalAnalysis.getLocationsWithMultipleCategories();
             searchManager.handleAdvancedSearch();
 
     }

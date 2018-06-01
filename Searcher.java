@@ -3,6 +3,7 @@ import java.lang.Integer;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -35,13 +36,14 @@ public class Searcher {
         return locationsWithManyCategories;
     }
 
-    private Set<String> createLocationNamesSet(){
-        Set<String> setOfLocationNames = new HashSet<String>();
+    private List<String> createLocationNamesList(){
+        List<String> listOfLocationNames = new ArrayList<String>();
 
         while(locationsIterator.hasNext()){
-            setOfLocationNames.add(locationsIterator.next().getName());
+            listOfLocationNames.add(locationsIterator.next().getName());
         }
-        return setOfLocationNames;
+        Collections.reverse(listOfLocationNames);
+        return listOfLocationNames;
     }
 
 
@@ -63,7 +65,7 @@ public class Searcher {
 
     public void handleAdvancedSearch(){
         String[] pattern = getSearchPatternFromInput();
-        Set<String> locationNames = createLocationNamesSet();
+        List<String> locationNames = createLocationNamesList();
         List<String> searchResults = new ArrayList<String>();
         List<Integer> indexesWithGoodResult = new ArrayList<Integer>();
         int matchingLetters = 0;
