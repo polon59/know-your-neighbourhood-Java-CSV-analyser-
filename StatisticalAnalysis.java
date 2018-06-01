@@ -1,63 +1,76 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class StatisticalAnalysis {
 
     private ArrayList<Location> locations;
+    private  HashMap<String, Integer> locationsCounters;
 
     public StatisticalAnalysis(ArrayList<Location> locations){
         this.locations = locations;
+        this.locationsCounters= new HashMap<String, Integer>();
+    }
+
+    private HashMap<String,Integer> createLocationsCountersMap(){
+        String[] locationsNames = {"województwo","powiat","gmina miejska","gmina wiejska", 
+        "gmina miejsko-wiejska","obszar wiejski","miasto","delegatura","miasto na prawach powiatu"};
+        
+        for (String location : locationsNames){
+            locationsCounters.put(location, 0);
+        }
+        return locationsCounters;
+    
+    }
+
+    private void incrementLocationCounter(String location){
+        locationsCounters.put(location, locationsCounters.getOrDefault(location, 1) + 1);
     }
 
     public void countLocationsByCategory(){
         String locationCategoryName;
+        
+        // int województwoCounter = 0;
+        // int powiatCounter = 0;
+        // int gmCounter = 0;
+        // int gwCounter = 0;
+        // int gmwCounter = 0;
+        // int owCounter = 0;
+        // int miastoCounter = 0;
+        // int delegaturaCounter = 0;
+        // int mnppCounter = 0;
 
-        int województwoCounter = 0;
-        int powiatCounter = 0;
-        int gmCounter = 0;
-        int gwCounter = 0;
-        int gmwCounter = 0;
-        int owCounter = 0;
-        int miastoCounter = 0;
-        int delegaturaCounter = 0;
-        int mnppCounter = 0;
-
-
-        System.out.println(locations.size() + "--SIZE");
         for (Location location : locations){
             locationCategoryName = location.getCategoryName();
 
             if (locationCategoryName.equals("województwo")){
-                województwoCounter++;
+                incrementLocationCounter("województwo");            
             }
             else if (locationCategoryName.equals("powiat")||
                      locationCategoryName.equals("miasto na prawach powiatu")){
-                powiatCounter++;
+                incrementLocationCounter("powiat");
             }
             else if (locationCategoryName.equals("gmina miejska")){
-                gmCounter++;
+                incrementLocationCounter("gmina miejska");
             }
             else if (locationCategoryName.equals("gmina wiejska")){
-                gwCounter++;
+                incrementLocationCounter("gmina wiejska");
             }
             else if (locationCategoryName.equals("gmina miejsko-wiejska")){
-                gmwCounter++;
+                incrementLocationCounter("gmina miejsko-wiejska");
             }
             else if (locationCategoryName.equals("obszar wiejski")){
-                owCounter++;
+                incrementLocationCounter("obszar wiejski");
             }       
             else if (locationCategoryName.equals("miasto")){
-                miastoCounter++;
+                incrementLocationCounter("miasto");
             }
             else if (locationCategoryName.equals("delegatura")){
-                delegaturaCounter++;
+                incrementLocationCounter("delegatura");
             }
             else if (locationCategoryName.equals("miasto na prawach powiatu")){
-                mnppCounter++;
+                incrementLocationCounter("miasto na prawach powiatu");
             }
 
         }
-
-        System.out.println(województwoCounter + " " + powiatCounter + " " + gmCounter + " " + gwCounter);
     }
-    
 }
