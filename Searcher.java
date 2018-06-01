@@ -8,15 +8,12 @@ import java.util.HashSet;
 
 public class Searcher {
 
-    private final String ANSI_WHITE = "\u001B[37m";
     private final String ANSI_GREEN = "\u001B[32m";
     private final String ANSI_RESET = "\u001B[0m";
     private LocationsIterator locationsIterator;
-    private ArrayList<Location> locations;
 
 
     public Searcher(ArrayList<Location> locations){
-        this.locations = locations;
         locationsIterator = new LocationsIterator(locations);
     }
 
@@ -76,7 +73,6 @@ public class Searcher {
                     
                     if(splittedName[a].toLowerCase().equals(pattern[i].toLowerCase())){
                         indexesWithGoodResult.add(a);
-                        //splittedName[a] = ANSI_GREEN + splittedName[a] + ANSI_RESET;
                         matchingLetters++;
                         i++;
                     }
