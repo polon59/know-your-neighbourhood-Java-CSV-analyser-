@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.lang.Integer;
 import java.util.List;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -28,6 +29,13 @@ public class Searcher {
             }
         }
         return locationsWithManyCategories;
+    }
+
+
+    private String[] getSearchPatternFromInput(){
+        Scanner input = new Scanner(System.in);
+        String[] searchPattern = input.nextLine().split("");
+        return searchPattern;
     }
 
     public void handleAdvancedSearch(){
