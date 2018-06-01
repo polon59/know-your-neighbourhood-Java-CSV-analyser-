@@ -10,6 +10,7 @@ public class StatisticalAnalysis {
     private  HashMap<String, Integer> communityCountyCounter;
     private LocationsIterator locationsIterator;
 
+
     public StatisticalAnalysis(ArrayList<Location> locations){
         this.locations = locations;
         this.locationsCounters = new HashMap<String, Integer>();
@@ -31,7 +32,6 @@ public class StatisticalAnalysis {
                 if (locationCategoryName.equals(possibleLocation))
                     incrementLocationCounter(locationCategoryName);
             }
-
         }
         //view.printhashmap() - here must be something like this
         System.out.println(locationsCounters.toString()); 
@@ -44,7 +44,6 @@ public class StatisticalAnalysis {
         ArrayList<String> longestLocationsNames = setInitialLongestLocationNames();
         
         while (locationsIterator.hasNext()){
-
             shortestOfLongestNamesIndex = findShortestLocationNameIndex(longestLocationsNames);
             shortestOfLongestName = longestLocationsNames.get(shortestOfLongestNamesIndex);
             currentName = locationsIterator.next().getName();
@@ -53,12 +52,12 @@ public class StatisticalAnalysis {
                 longestLocationsNames.set(shortestOfLongestNamesIndex, currentName);
             }
         }
-
         //view.printLongestLocationNames() here must be something like this
         for (String name : longestLocationsNames){
             System.out.println(name);
         }
     }
+
 
     // this method is used to find shortest of three longest location names
     private int findShortestLocationNameIndex(ArrayList<String> longestNames){
@@ -111,9 +110,23 @@ public class StatisticalAnalysis {
     }
 
 
+    private String findCountyNameByID(String givenID){
+        Location currentCounty;
+
+        while (locationsIterator.hasNext()){
+            currentCounty = locationsIterator.next();
+
+            if (currentCounty.getBelongingCountyID().equals(givenID) 
+                && currentCounty.getCategoryName().equals("powiat")){
+                    return currentCounty.getName();
+                }
+        }
+        return null;
+    }
+
+
     public void findBiggestCountyName(){
         String currentCountyID;
-
 
         while (locationsIterator.hasNext()){
             currentCountyID = locationsIterator.next().getBelongingCountyID();
@@ -121,15 +134,9 @@ public class StatisticalAnalysis {
         }
 
         String biggestCountyID = getBiggestCountyID();
-        String biggestCountyName;
+        String biggestCountyName = findCountyNameByID(biggestCountyID);
 
-        while (locationsIterator.hasNext()){
-            Location currentLocation = locationsIterator.next();
-            if(currentLocation.getBelongingCountyID().equals(biggestCountyID) && currentLocation.getCategoryName().equals("powiat")){
-                System.out.println(currentLocation.getName());
-            }
-        }
-
+        System.out.println(biggestCountyName);
 
     }
 
