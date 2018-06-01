@@ -3,7 +3,6 @@ import java.lang.Integer;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -36,14 +35,13 @@ public class Searcher {
         return locationsWithManyCategories;
     }
 
-    private List<String> createLocationNamesList(){
-        List<String> listOfLocationNames = new ArrayList<String>();
+    private ArrayList<String> createLocationNamesList(){
+        ArrayList<String> setOfLocationNames = new ArrayList<String>();
 
         while(locationsIterator.hasNext()){
-            listOfLocationNames.add(locationsIterator.next().getName());
+            setOfLocationNames.add(locationsIterator.next().getName());
         }
-        Collections.reverse(listOfLocationNames);
-        return listOfLocationNames;
+        return setOfLocationNames;
     }
 
 
@@ -65,15 +63,17 @@ public class Searcher {
 
     public void handleAdvancedSearch(){
         String[] pattern = getSearchPatternFromInput();
-        List<String> locationNames = createLocationNamesList();
-        List<String> searchResults = new ArrayList<String>();
+        ArrayList<String> locationNames = createLocationNamesList();
+        ArrayList<String> searchResults = new ArrayList<String>();
         List<Integer> indexesWithGoodResult = new ArrayList<Integer>();
+        Location currentLocation;
         int matchingLetters = 0;
         int i = 0;
         int a = 0;
 
-        for (String locationName : locationNames){
-            String[] splittedName = locationName.split("");
+        while (locationsIterator.hasNext()){
+            currentLocation = locationsIterator.next();
+            String[] splittedName = currentLocation.getName().split("");
 
             a = 0;
             i = 0;
