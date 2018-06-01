@@ -11,9 +11,6 @@ public class StatisticalAnalysis {
         this.locationsCounters= new HashMap<String, Integer>();
     }
 
-    private void incrementLocationCounter(String location){
-        locationsCounters.put(location, locationsCounters.getOrDefault(location, 1) + 1);
-    }
 
     public void countLocationsByCategory(){
         String locationCategoryName;
@@ -24,8 +21,7 @@ public class StatisticalAnalysis {
             if (locationCategoryName.equals("województwo")){
                 incrementLocationCounter("województwo");            
             }
-            else if (locationCategoryName.equals("powiat")||
-                     locationCategoryName.equals("miasto na prawach powiatu")){
+            else if (locationCategoryName.equals("powiat")){
                 incrementLocationCounter("powiat");
             }
             else if (locationCategoryName.equals("gmina miejska")){
@@ -48,8 +44,23 @@ public class StatisticalAnalysis {
             }
             else if (locationCategoryName.equals("miasto na prawach powiatu")){
                 incrementLocationCounter("miasto na prawach powiatu");
-            }
+                incrementLocationCounter("powiat");
+            }  
+        }
+        //view.printhashmap() - here must be something like this
+        System.out.println(locationsCounters.toString()); 
+    }
 
+    private void incrementLocationCounter(String location){
+        locationsCounters.put(location, locationsCounters.getOrDefault(location, 0) + 1);
+    }
+
+    public void findLongestLocationsNames(){
+        String[] longestLocationsNames = new String[3];
+            
+
+        for (Location location : locations){
+            
         }
     }
 }
