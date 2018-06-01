@@ -17,16 +17,6 @@ public class StatisticalAnalysis {
 
     public void countLocationsByCategory(){
         String locationCategoryName;
-        
-        // int województwoCounter = 0;
-        // int powiatCounter = 0;
-        // int gmCounter = 0;
-        // int gwCounter = 0;
-        // int gmwCounter = 0;
-        // int owCounter = 0;
-        // int miastoCounter = 0;
-        // int delegaturaCounter = 0;
-        // int mnppCounter = 0;
 
         for (Location location : locations){
             locationCategoryName = location.getCategoryName();
