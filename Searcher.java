@@ -35,15 +35,6 @@ public class Searcher {
         return locationsWithManyCategories;
     }
 
-    private ArrayList<String> createLocationNamesList(){
-        ArrayList<String> setOfLocationNames = new ArrayList<String>();
-
-        while(locationsIterator.hasNext()){
-            setOfLocationNames.add(locationsIterator.next().getName());
-        }
-        return setOfLocationNames;
-    }
-
 
     private String[] getSearchPatternFromInput(){
         Scanner input = new Scanner(System.in);
@@ -63,7 +54,6 @@ public class Searcher {
 
     public void handleAdvancedSearch(){
         String[] pattern = getSearchPatternFromInput();
-        ArrayList<String> locationNames = createLocationNamesList();
         ArrayList<String> searchResults = new ArrayList<String>();
         List<Integer> indexesWithGoodResult = new ArrayList<Integer>();
         Location currentLocation;
@@ -100,7 +90,7 @@ public class Searcher {
                 }
                 if (matchingLetters == pattern.length){
                     splittedName = adjustNameColor(indexesWithGoodResult, splittedName);
-                    searchResults.add(String.join("", splittedName));
+                    searchResults.add(String.join("", splittedName) + " " + currentLocation.getCategoryName());
                 }
                 break;
             }
