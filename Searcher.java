@@ -21,9 +21,9 @@ public class Searcher {
     }
 
 
-    public List<String> findLocationsWithManyCategories(HashMap<String, Integer> categoriesCounter){
+    public ArrayList<String> findLocationsWithManyCategories(HashMap<String, Integer> categoriesCounter){
         Set<String> locationsNames = categoriesCounter.keySet();
-        List<String> locationsWithManyCategories = new ArrayList<String>();
+        ArrayList<String> locationsWithManyCategories = new ArrayList<String>();
         int numberOfLocationCategories;
 
         for (String locationName : locationsNames){

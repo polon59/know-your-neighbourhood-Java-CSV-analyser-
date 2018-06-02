@@ -35,6 +35,7 @@ public class StatisticalAnalysis {
             locationsCounters.put
             (locationCategoryName, locationsCounters.getOrDefault(locationCategoryName, 0) + 1);
         }
+
         displayManager.printHashMapInTable(locationsCounters, "LOCATION---COUNTER");
         //view.printhashmap() - here must be something like this
         //System.out.println(locationsCounters.toString()); 
@@ -158,13 +159,14 @@ public class StatisticalAnalysis {
     public void getLocationsWithMultipleCategories(){
         countCategoriesForEachLocation();
 
-        List<String> locationsWithMultipleCategories = searchManager.
+        ArrayList<String> locationsWithMultipleCategories = searchManager.
             findLocationsWithManyCategories(lotationsCategoriesCounter);
 
+        displayManager.printListInTable(locationsWithMultipleCategories, "LOCATION NAME");
         //view.print arraylist
-        for (String name : locationsWithMultipleCategories){
-            System.out.println(name); 
-        }
+        // for (String name : locationsWithMultipleCategories){
+        //     System.out.println(name); 
+        //}
         
     }
 
