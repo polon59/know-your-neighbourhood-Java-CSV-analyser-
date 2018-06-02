@@ -24,6 +24,24 @@ public class Display {
         return difference;
     }
 
-    
+    private StringBuilder createTableRow(int maxLength, String stringToWrite){
+        StringBuilder row = new StringBuilder();
+        int lengthDifference = calculateLengthDifference(maxLength, stringToWrite);
+        row.append("|");
+        row.append(stringToWrite);
+
+        for (int i = 0; i < lengthDifference; i ++){
+            row.append(" ");
+        }
+        row.append("|\n|");
+
+        for (int i = 0; i < maxLength; i++){
+            row.append("_");
+        }
+        row.append("|\n");
+        return row;
+    }
+
+ 
     
 }
