@@ -5,16 +5,19 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Arrays;
 
 public class Searcher {
 
     private final String ANSI_GREEN = "\u001B[32m";
     private final String ANSI_RESET = "\u001B[0m";
     private LocationsIterator locationsIterator;
+    private Display display;
 
 
     public Searcher(ArrayList<Location> locations){
         locationsIterator = new LocationsIterator(locations);
+        this.display = new Display();
     }
 
 
@@ -86,15 +89,19 @@ public class Searcher {
                 }
                 if (matchingLetters == pattern.length){
                     splittedName = adjustNameColor(indexesWithGoodResult, splittedName);
-                    searchResults.add(String.join("", splittedName) + "---" + currentLocation.getCategoryName());
+                    searchResults.add(String.join("",splittedName) + "---" + currentLocation.getCategoryName());
                 }
                 break;
             }
         }
 
+
+        display.printListInTable(searchResults, "header");
+        
         //view.print ARRaylist
-        for (String result : searchResults){
-            System.out.println(result);
-        }
+        // for (String result : searchResults){
+        //     System.out.println(result);
+        //     System.out.println(result.length());
+        // }
     }    
 }

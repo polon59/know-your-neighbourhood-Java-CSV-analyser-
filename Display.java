@@ -33,15 +33,24 @@ public class Display {
         for (int i = 0; i < lengthDifference; i ++){
             row.append(" ");
         }
-        row.append("|\n|");
 
-        for (int i = 0; i < maxLength; i++){
-            row.append("_");
-        }
+
         row.append("|\n");
         return row;
     }
 
- 
+    public void printListInTable(ArrayList<String> list, String header){
+        StringBuilder table = new StringBuilder();
+        int maxLength = findLongestString(list);
+        //System.out.println(maxLength);
+
+        for (String stringToWrite : list){
+            table.append(createTableRow(maxLength, stringToWrite)) ;
+        }
+        System.out.println(table.toString());
+
+
+
+    }
     
 }
