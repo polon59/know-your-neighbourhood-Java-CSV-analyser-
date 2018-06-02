@@ -126,7 +126,7 @@ public class StatisticalAnalysis {
     }
 
 
-    public void findBiggestCountyName(){
+    public void findBiggestCounty(){
         String currentCountyID;
 
         while (locationsIterator.hasNext()){
@@ -136,8 +136,10 @@ public class StatisticalAnalysis {
 
         String biggestCountyID = getBiggestCountyID();
         String biggestCountyName = findCountyNameByID(biggestCountyID);
-
-        System.out.println(biggestCountyName);
+        String description = "County with largest number of communities";
+        
+        displayManager.printSingleResult(biggestCountyName, description);
+        //System.out.println(biggestCountyName);
         // view.print normal string
     }
 
