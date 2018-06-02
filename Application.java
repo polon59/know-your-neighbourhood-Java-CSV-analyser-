@@ -24,6 +24,7 @@ public class Application {
         int currentOption = getOptionValuefromInput();
         
         while(currentOption != 0){
+
             switch(currentOption){
                 case(1):
                     statisticalAnalysis.countLocationsByCategory();
@@ -35,21 +36,19 @@ public class Application {
                     statisticalAnalysis.findBiggestCounty();
                     break;
                 case(4):
-                    
-
-
-
-
-
+                    statisticalAnalysis.getLocationsWithMultipleCategories();
+                    break;
+                case(5):
+                    searchManager.handleAdvancedSearch();
+                    break;
+                case(6):
+                    currentOption = 0;
+                    break;
             }
         }
-
-            
-            statisticalAnalysis.getLocationsWithMultipleCategories();
-            searchManager.handleAdvancedSearch();
-
     }
 
+    
     private int getOptionValuefromInput(){
         Scanner input = new Scanner(System.in);
         int choice = input.nextInt(); input.nextLine();
