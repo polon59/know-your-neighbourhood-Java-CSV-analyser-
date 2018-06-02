@@ -10,8 +10,6 @@ public class Display {
         int maxLenColumn1 = 0;
         int maxLenColumn2 = 0;
         int[] columnLengths = new int[2];
-
-        int currentWordLength;
         String[] lineElements;
 
         for (String element : list){
@@ -30,7 +28,6 @@ public class Display {
 
     private int calculateLengthDifference(int maxLength, String stringToWrite) {
         int difference = maxLength - stringToWrite.length();
-        //System.out.println(difference);
         return difference;
     }
 
@@ -39,14 +36,10 @@ public class Display {
         int lengthDifference = calculateLengthDifference(maxLength, stringToWrite);
         row.append("|");
         row.append(stringToWrite);
-        //System.out.println(stringToWrite.length());
 
         for (int i = 0; i < lengthDifference; i ++){
             row.append(" ");
         }
-
-
-        //row.append("|\n");
         return row;
     }
 
@@ -55,7 +48,6 @@ public class Display {
         int[] maxLengths = findLongestString(list);
         
         String[] rowElements;
-        //System.out.println(maxLength);
 
         for (String stringToWrite : list){
             rowElements = stringToWrite.split("---");
