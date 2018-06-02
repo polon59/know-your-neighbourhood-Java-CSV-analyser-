@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.NoSuchElementException;
 
 public class Application {
 
@@ -8,6 +9,7 @@ public class Application {
     private StatisticalAnalysis statisticalAnalysis;
     private Searcher searchManager;
     private Display displayManager;
+    private Scanner input;
 
 
     public Application(){
@@ -16,45 +18,42 @@ public class Application {
         statisticalAnalysis = new StatisticalAnalysis(locations);
         searchManager = new Searcher(locations);
         displayManager = new Display();
+        input = new Scanner(System.in);
     }
 
 
     public void launchApplication(){
-        displayManager.displayMenuOptions();
-        int currentOption = getOptionValuefromInput();
+        int currentOption = 10;
+        displayManager.clearScreen();
         
         while(currentOption != 0){
 
+            displayManager.displayMenuOptions();
+            currentOption = input.nextInt(); input.nextLine();
+
+            
+
             switch(currentOption){
-                case(1):
+                case 1:
                     statisticalAnalysis.countLocationsByCategory();
                     break;
-                case(2):
+                case 2:
                     statisticalAnalysis.findLongestLocationsNames();
                     break;
-                case(3):
+                case 3:
                     statisticalAnalysis.findBiggestCounty();
                     break;
-                case(4):
+                case 4:
                     statisticalAnalysis.getLocationsWithMultipleCategories();
                     break;
-                case(5):
+                case 5:
                     searchManager.handleAdvancedSearch();
                     break;
-                case(6):
+                case 6:
                     currentOption = 0;
                     break;
             }
+            
         }
     }
-
-    
-    private int getOptionValuefromInput(){
-        Scanner input = new Scanner(System.in);
-        int choice = input.nextInt(); input.nextLine();
-        input.close();
-
-        return choice;
-    }
-    
 }

@@ -136,9 +136,9 @@ public class StatisticalAnalysis {
 
         String biggestCountyID = getBiggestCountyID();
         String biggestCountyName = findCountyNameByID(biggestCountyID);
-        String description = "County with largest number of communities";
         
-        displayManager.printSingleResult(biggestCountyName, description);
+
+        displayManager.printSingleResult(biggestCountyName, "POWIAT");
         //System.out.println(biggestCountyName);
         // view.print normal string
     }

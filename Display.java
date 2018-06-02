@@ -2,10 +2,18 @@ import java.lang.StringBuilder;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Display {
+
+
+    public void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
 
 
     private int calculateLengthDifference(int maxLength, String stringToWrite) {
