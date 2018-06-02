@@ -11,6 +11,7 @@ public class StatisticalAnalysis {
     private HashMap<String, Integer> lotationsCategoriesCounter;
     private LocationsIterator locationsIterator;
     private Searcher searchManager;
+    private Display displayManager;
 
 
     public StatisticalAnalysis(ArrayList<Location> locations){
@@ -20,6 +21,7 @@ public class StatisticalAnalysis {
         this.lotationsCategoriesCounter = new HashMap<String, Integer>();
         this.locationsIterator = new LocationsIterator(locations);
         this.searchManager = new Searcher(locations);
+        this.displayManager = new Display();
     }
 
 
@@ -52,10 +54,12 @@ public class StatisticalAnalysis {
                 longestLocationsNames.set(shortestOfLongestNamesIndex, currentName);
             }
         }
+
+        displayManager.printListInTable(longestLocationsNames, "NAMES");
         //view.printLongestLocationNames() print arraylist
-        for (String name : longestLocationsNames){
-            System.out.println(name);
-        }
+        // for (String name : longestLocationsNames){
+        //     System.out.println(name);
+        //}
     }
 
 

@@ -21,7 +21,7 @@ public class Application {
         //     System.out.println(location.toString());
         // }
             // statisticalAnalysis.countLocationsByCategory();
-            // statisticalAnalysis.findLongestLocationsNames();
+            statisticalAnalysis.findLongestLocationsNames();
             // statisticalAnalysis.findBiggestCountyName();
             // statisticalAnalysis.getLocationsWithMultipleCategories();
             searchManager.handleAdvancedSearch();

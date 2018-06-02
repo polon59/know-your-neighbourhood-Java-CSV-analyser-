@@ -64,7 +64,6 @@ public class Searcher {
         while (locationsIterator.hasNext()){
             currentLocation = locationsIterator.next();
             String[] splittedName = currentLocation.getName().split("");
-
             a = 0;
             i = 0;
             matchingLetters = 0;
@@ -94,14 +93,6 @@ public class Searcher {
                 break;
             }
         }
-
-
-        display.printListInTable(searchResults, "header");
-        
-        //view.print ARRaylist
-        // for (String result : searchResults){
-        //     System.out.println(result);
-        //     System.out.println(result.length());
-        // }
+        display.printListInTable(searchResults, "LOCATION---TYPE ");
     }    
 }

@@ -17,8 +17,10 @@ public class Display {
             if (lineElements[0].length() > maxLenColumn1){
                 maxLenColumn1 = lineElements[0].length();
             }
-            if (lineElements[1].length() > maxLenColumn2){
-                maxLenColumn2 = lineElements[1].length();
+            if (lineElements.length > 1){
+                if (lineElements[1].length() > maxLenColumn2){
+                    maxLenColumn2 = lineElements[1].length();
+                }
             }
         }
         columnLengths[0] = maxLenColumn1;
@@ -27,7 +29,7 @@ public class Display {
     }
 
     private int calculateLengthDifference(int maxLength, String stringToWrite) {
-        int difference = maxLength - stringToWrite.length();
+        int difference = maxLength - stringToWrite.length() ;
         return difference;
     }
 
@@ -43,17 +45,39 @@ public class Display {
         return row;
     }
 
-    public void printListInTable(ArrayList<String> list, String header){
-        StringBuilder table = new StringBuilder();
-        int[] maxLengths = findLongestString(list);
-        
-        String[] rowElements;
+    private String createTableLine(int[] maxLengths){
+        StringBuilder line = new StringBuilder();
+        int tableLength = maxLengths[0] + maxLengths[1];
+        line.append("|");
 
+        for (int i = 0; i < tableLength; i++){
+            line.append("_");
+        }
+
+        line.append("|\n");
+        return line.toString();
+
+    }
+
+    public void printListInTable(ArrayList<String> list, String header){
+        list.add(0, header);
+        StringBuilder table = new StringBuilder();
+        String[] rowElements;
+        int[] maxLengths = findLongestString(list);
+        String separatingLine = createTableLine(maxLengths);
+        
+        
         for (String stringToWrite : list){
             rowElements = stringToWrite.split("---");
-            table.append(createTableRow(maxLengths[0], rowElements[0])) ;
-            table.append(createTableRow(maxLengths[1], rowElements[1]));
+            table.append(createTableRow(maxLengths[0], rowElements[0]));
+            if (rowElements.length > 1){
+                table.append(createTableRow(maxLengths[1], rowElements[1]));
+            }
+            
+            
+
             table.append("|\n");
+            table.append(separatingLine);
         }
         System.out.println(table.toString());
 
