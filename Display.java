@@ -8,6 +8,68 @@ import java.util.HashMap;
 public class Display {
 
 
+    private int calculateLengthDifference(int maxLength, String stringToWrite) {
+        int difference = maxLength - stringToWrite.length() ;
+        return difference;
+    }
+
+
+    public void printHashMapInTable(HashMap<String,Integer> hashMap, String header){
+        ArrayList<String> listToPrint = convertMapToList(hashMap);
+        printListInTable(listToPrint, header);
+    }
+
+
+    private ArrayList<String> convertMapToList(HashMap<String,Integer> map){
+        ArrayList<String> mapConvertedToList = new ArrayList<String>();
+        Set<String> setOfKeys = map.keySet();
+
+        for (String key : setOfKeys){
+            StringBuilder joinedElement = new StringBuilder();
+            joinedElement.append(key);
+            joinedElement.append("---");
+            joinedElement.append(map.get(key));
+            mapConvertedToList.add(joinedElement.toString());
+        }
+        return mapConvertedToList;
+    }
+    
+
+    public void printSingleResult(String result, String description){
+        StringBuilder message = new StringBuilder();
+        message.append(description);
+        message.append(" - ");
+        message.append(result);
+        System.out.println(message.toString());
+    }
+
+
+    private int calculateNumberOfSeparators(int[] maxLengths){
+        int numberOfSeparators = 0;
+
+        for (int i = 0; i < maxLengths.length; i++){
+            if (maxLengths[i] > 0){
+                numberOfSeparators++;
+            }
+        }
+        System.out.println(numberOfSeparators);
+        return numberOfSeparators;
+    }
+
+
+    public void displayMenuOptions(){
+
+        String[] options = {"(1) List statistics", "(2) Display 3 cities with longest names",
+                "(3) Display county's name with the largest number of communities",
+                "(4) Display locations, that belong to more than one category",
+                "(5) Advanced search", "(0) Exit program"};
+
+        for (String option : options){
+            System.out.println(option);
+        }
+    }
+
+
     private int[] findLongestString(ArrayList<String> list){
         int maxLenColumn1 = 0;
         int maxLenColumn2 = 0;
@@ -31,12 +93,6 @@ public class Display {
     }
 
 
-    private int calculateLengthDifference(int maxLength, String stringToWrite) {
-        int difference = maxLength - stringToWrite.length() ;
-        return difference;
-    }
-
-
     private StringBuilder createTableRow(int maxLength, String stringToWrite){
         StringBuilder row = new StringBuilder();
         int lengthDifference = calculateLengthDifference(maxLength, stringToWrite);
@@ -47,19 +103,6 @@ public class Display {
             row.append(" ");
         }
         return row;
-    }
-
-
-    private int calculateNumberOfSeparators(int[] maxLengths){
-        int numberOfSeparators = 0;
-
-        for (int i = 0; i < maxLengths.length; i++){
-            if (maxLengths[i] > 0){
-                numberOfSeparators++;
-            }
-        }
-        System.out.println(numberOfSeparators);
-        return numberOfSeparators;
     }
 
 
@@ -99,26 +142,4 @@ public class Display {
         }
         System.out.println(table.toString());
     }
-
-
-    private ArrayList<String> convertMapToList(HashMap<String,Integer> map){
-        ArrayList<String> mapConvertedToList = new ArrayList<String>();
-        Set<String> setOfKeys = map.keySet();
-
-        for (String key : setOfKeys){
-            StringBuilder joinedElement = new StringBuilder();
-            joinedElement.append(key);
-            joinedElement.append("---");
-            joinedElement.append(map.get(key));
-            mapConvertedToList.add(joinedElement.toString());
-        }
-        return mapConvertedToList;
-    }
-
-
-    public void printHashMapInTable(HashMap<String,Integer> hashMap, String header){
-        ArrayList<String> listToPrint = convertMapToList(hashMap);
-        printListInTable(listToPrint, header);
-    }
-    
 }
