@@ -35,8 +35,9 @@ public class StatisticalAnalysis {
             locationsCounters.put
             (locationCategoryName, locationsCounters.getOrDefault(locationCategoryName, 0) + 1);
         }
+        displayManager.printHashMapInTable(locationsCounters, "LOCATION---COUNTER");
         //view.printhashmap() - here must be something like this
-        System.out.println(locationsCounters.toString()); 
+        //System.out.println(locationsCounters.toString()); 
     }
 
 

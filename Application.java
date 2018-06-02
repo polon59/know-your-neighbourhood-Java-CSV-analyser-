@@ -20,7 +20,8 @@ public class Application {
         // for (Location location : locations){
         //     System.out.println(location.toString());
         // }
-            // statisticalAnalysis.countLocationsByCategory();
+            statisticalAnalysis.countLocationsByCategory();
+            System.out.println("=========");
             statisticalAnalysis.findLongestLocationsNames();
             // statisticalAnalysis.findBiggestCountyName();
             // statisticalAnalysis.getLocationsWithMultipleCategories();
