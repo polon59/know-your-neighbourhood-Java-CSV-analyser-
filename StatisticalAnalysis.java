@@ -37,8 +37,6 @@ public class StatisticalAnalysis {
         }
 
         displayManager.printHashMapInTable(locationsCounters, "LOCATION---COUNTER");
-        //view.printhashmap() - here must be something like this
-        //System.out.println(locationsCounters.toString()); 
     }
 
 
@@ -58,10 +56,6 @@ public class StatisticalAnalysis {
         }
 
         displayManager.printListInTable(longestLocationsNames, "NAMES");
-        //view.printLongestLocationNames() print arraylist
-        // for (String name : longestLocationsNames){
-        //     System.out.println(name);
-        //}
     }
 
 
@@ -139,8 +133,6 @@ public class StatisticalAnalysis {
         
 
         displayManager.printSingleResult(biggestCountyName, "POWIAT");
-        //System.out.println(biggestCountyName);
-        // view.print normal string
     }
 
 
@@ -165,10 +157,6 @@ public class StatisticalAnalysis {
             findLocationsWithManyCategories(lotationsCategoriesCounter);
 
         displayManager.printListInTable(locationsWithMultipleCategories, "LOCATION NAME");
-        //view.print arraylist
-        // for (String name : locationsWithMultipleCategories){
-        //     System.out.println(name); 
-        //}
         
     }
 
