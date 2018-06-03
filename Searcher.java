@@ -39,7 +39,6 @@ public class Searcher {
     private String[] getSearchPatternFromInput(){
         Scanner input = new Scanner(System.in);
         String[] searchPattern = input.nextLine().split("");
-        //input.close();
         return searchPattern;
     }
 
