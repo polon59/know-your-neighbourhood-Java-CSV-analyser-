@@ -5,7 +5,6 @@ import java.util.Set;
 
 public class StatisticalAnalysis {
 
-    private ArrayList<Location> locations;
     private HashMap<String, Integer> locationsCounters;
     private HashMap<String, Integer> communityCountyCounter;
     private HashMap<String, Integer> lotationsCategoriesCounter;
@@ -15,7 +14,6 @@ public class StatisticalAnalysis {
 
 
     public StatisticalAnalysis(ArrayList<Location> locations){
-        this.locations = locations;
         this.locationsCounters = new HashMap<String, Integer>();
         this.communityCountyCounter = new HashMap<String, Integer>();
         this.lotationsCategoriesCounter = new HashMap<String, Integer>();
