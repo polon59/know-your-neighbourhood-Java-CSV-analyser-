@@ -15,15 +15,15 @@ public class Searcher {
     private Display display;
 
 
-    public Searcher(ArrayList<Location> locations){
+    public Searcher(List<Location> locations){
         locationsIterator = new LocationsIterator(locations);
         this.display = new Display();
     }
 
 
-    public ArrayList<String> findLocationsWithManyCategories(HashMap<String, Integer> categoriesCounter){
+    public List<String> findLocationsWithManyCategories(HashMap<String, Integer> categoriesCounter){
         Set<String> locationsNames = categoriesCounter.keySet();
-        ArrayList<String> locationsWithManyCategories = new ArrayList<String>();
+        List<String> locationsWithManyCategories = new ArrayList<String>();
         int numberOfLocationCategories;
 
         for (String locationName : locationsNames){
@@ -53,7 +53,7 @@ public class Searcher {
 
     public void handleAdvancedSearch(){
         String[] pattern = getSearchPatternFromInput();
-        ArrayList<String> searchResults = new ArrayList<String>();
+        List<String> searchResults = new ArrayList<String>();
         List<Integer> indexesWithGoodResult = new ArrayList<Integer>();
         Location currentLocation;
         int matchingLetters = 0;

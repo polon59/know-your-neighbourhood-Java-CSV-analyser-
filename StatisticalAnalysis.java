@@ -13,7 +13,7 @@ public class StatisticalAnalysis {
     private Display displayManager;
 
 
-    public StatisticalAnalysis(ArrayList<Location> locations){
+    public StatisticalAnalysis(List<Location> locations){
         this.locationsCounters = new HashMap<String, Integer>();
         this.communityCountyCounter = new HashMap<String, Integer>();
         this.lotationsCategoriesCounter = new HashMap<String, Integer>();
@@ -41,7 +41,7 @@ public class StatisticalAnalysis {
     public void findLongestLocationsNames(){
         String shortestOfLongestName, currentName;
         int shortestOfLongestNamesIndex;
-        ArrayList<String> longestLocationsNames = setInitialLongestLocationNames();
+        List<String> longestLocationsNames = setInitialLongestLocationNames();
         
         while (locationsIterator.hasNext()){
             shortestOfLongestNamesIndex = findShortestLocationNameIndex(longestLocationsNames);
@@ -58,7 +58,7 @@ public class StatisticalAnalysis {
 
 
     // this method is used to find shortest of three longest location names
-    private int findShortestLocationNameIndex(ArrayList<String> longestNames){
+    private int findShortestLocationNameIndex(List<String> longestNames){
         int shortestNameIndex = 0;
         int currentNameLength, shortestNameLength;
         
@@ -74,8 +74,8 @@ public class StatisticalAnalysis {
     }
 
 
-    private ArrayList<String> setInitialLongestLocationNames(){
-        ArrayList<String> longestLocationsNames = new ArrayList<String>();
+    private List<String> setInitialLongestLocationNames(){
+        List<String> longestLocationsNames = new ArrayList<String>();
         
         for (int i = 0 ; i < 3; i++){
             longestLocationsNames.add(locationsIterator.next().getName());
@@ -151,7 +151,7 @@ public class StatisticalAnalysis {
     public void getLocationsWithMultipleCategories(){
         countCategoriesForEachLocation();
 
-        ArrayList<String> locationsWithMultipleCategories = searchManager.
+        List<String> locationsWithMultipleCategories = searchManager.
             findLocationsWithManyCategories(lotationsCategoriesCounter);
 
         displayManager.printListInTable(locationsWithMultipleCategories, "LOCATION NAME");

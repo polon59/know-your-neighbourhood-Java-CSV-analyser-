@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocationCreator {
-    ArrayList<Location> locations;
+    List<Location> locations;
     FileReader fileReader;
     ArrayList<String[]> fileLines;
 
@@ -24,7 +24,7 @@ public class LocationCreator {
         }
     }
 
-    public ArrayList<Location> getLocationsList(){
+    public List<Location> getLocationsList(){
         return this.locations;
     }
 }

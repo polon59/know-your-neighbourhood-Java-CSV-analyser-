@@ -4,10 +4,10 @@ import java.util.List;
 
 public class LocationsIterator implements Iterator {
 
-    private ArrayList<Location> locationsList;
+    private List<Location> locationsList;
     private int index;
 
-    public LocationsIterator(ArrayList<Location> locationsList){
+    public LocationsIterator(List<Location> locationsList){
         this.locationsList = locationsList;
         this.index = 0;
     }

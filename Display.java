@@ -23,13 +23,13 @@ public class Display {
 
 
     public void printHashMapInTable(HashMap<String,Integer> hashMap, String header){
-        ArrayList<String> listToPrint = convertMapToList(hashMap);
+        List<String> listToPrint = convertMapToList(hashMap);
         printListInTable(listToPrint, header);
     }
 
 
-    private ArrayList<String> convertMapToList(HashMap<String,Integer> map){
-        ArrayList<String> mapConvertedToList = new ArrayList<String>();
+    private List<String> convertMapToList(HashMap<String,Integer> map){
+        List<String> mapConvertedToList = new ArrayList<String>();
         Set<String> setOfKeys = map.keySet();
 
         for (String key : setOfKeys){
@@ -78,7 +78,7 @@ public class Display {
     }
 
 
-    private int[] findLongestString(ArrayList<String> list){
+    private int[] findLongestString(List<String> list){
         int maxLenColumn1 = 0;
         int maxLenColumn2 = 0;
         int[] columnLengths = new int[2];
@@ -131,7 +131,7 @@ public class Display {
     }
 
 
-    public void printListInTable(ArrayList<String> list, String header){
+    public void printListInTable(List<String> list, String header){
         list.add(0, header);
         StringBuilder table = new StringBuilder();
         String[] rowElements;

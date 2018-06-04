@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.NoSuchElementException;
 
 public class Application {
 
     private LocationCreator locationCreator;
-    private ArrayList<Location> locations;
+    private List<Location> locations;
     private StatisticalAnalysis statisticalAnalysis;
     private Searcher searchManager;
     private Display displayManager;
